@@ -24,11 +24,6 @@ public class SimplePlatformController : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
 	{
-		gameObject.GetComponentInChildren<Camera> ().cullingMask = backMask;
-		currentPage = "frontPage";
-		Physics2D.IgnoreLayerCollision (14,15,true);
-		Physics2D.IgnoreLayerCollision (9,15,true);
-		Physics2D.IgnoreLayerCollision (9,14,false);
 		anim = GetComponent<Animator> ();
 		rb2d = GetComponent<Rigidbody2D> ();
 		alive = true;
@@ -37,9 +32,9 @@ public class SimplePlatformController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (gameObject.transform.localPosition.y < GameManager.deathHeight && alive == true)
-			die ();
-		grounded = Physics2D.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer (currentPage));
+//		if (gameObject.transform.localPosition.y < GameManager.deathHeight && alive == true)
+//			die ();
+//		grounded = Physics2D.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer (currentPage));
 
 		if (Input.GetButtonDown ("Jump") && grounded) {
 			jump = true;
@@ -50,22 +45,12 @@ public class SimplePlatformController : MonoBehaviour
 	{
 		float h = Input.GetAxis ("Horizontal");
 
-		if (currentPage == "backPage")
-			h *= -1;
-
-		if(h < 0.001f && h > -0.001f){
-			rb2d.velocity = new Vector2(0,rb2d.velocity.y);
-		}
-
-		anim.SetFloat ("Speed", Mathf.Abs (h));
-
-		if (h * rb2d.velocity.x < maxSpeed) {
-			rb2d.AddForce (Vector2.right * h * moveForce);
-		}
-
-		if (Mathf.Abs (rb2d.velocity.x) > maxSpeed) {
-			rb2d.velocity = new Vector2 (Mathf.Sign (rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
-		}
+		if (h == -1)
+			anim.SetInteger ("run", 2);
+		else if (h == 0)
+			anim.SetInteger ("run", 0);
+		else
+			anim.SetInteger ("run", 1);
 
 		if (h > 0 && !facingRight) {
 			Flip ();
@@ -108,9 +93,8 @@ public class SimplePlatformController : MonoBehaviour
 	void die(){
 		Camera cam = gameObject.GetComponentInChildren<Camera> ();
 		cam.transform.SetParent (null);
-		hearts.removeLife ();
 		alive = false;
-		if (hearts.lives == 0) 
+		if (false) //ADD LOSE GAME HERE
 			GameObject.Find("GameManager").GetComponent<GameManager>().LoseTheGame ();
 		else
 			StartCoroutine(reload ());

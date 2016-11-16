@@ -59,7 +59,4 @@ public class fading : MonoBehaviour {
 		SceneManager.LoadScene (scene);
 	}
 
-	public void initializeLives(){
-		hearts.lives = 5;
-	}
 }
