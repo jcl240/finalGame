@@ -51,6 +51,18 @@ public class SimplePlatformController : MonoBehaviour
 		else
 			anim.SetInteger ("run", 1);
 
+		if(h < 0.001f && h > -0.001f){
+			rb.velocity = new Vector2(0,rb.velocity.y);
+		}
+
+		if (h * rb.velocity.x < maxSpeed) {
+			rb.AddForce (Vector2.right * h * moveForce);
+		}
+
+		if (Mathf.Abs (rb.velocity.x) > maxSpeed) {
+			rb.velocity = new Vector2 (Mathf.Sign (rb.velocity.x) * maxSpeed, rb.velocity.y);
+		}
+
 		if (h > 0 && !facingRight) {
 			Flip ();
 		} else if (h < 0 && facingRight) {
