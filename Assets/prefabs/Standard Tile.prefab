@@ -22,7 +22,7 @@ GameObject:
   - 33: {fileID: 33000012050866404}
   - 65: {fileID: 65000013092679882}
   - 23: {fileID: 23000012298185020}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Standard Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
