@@ -18,14 +18,14 @@ public class SimplePlatformController : MonoBehaviour
 
 	private bool grounded = false;
 	private Animator anim;
-	private Rigidbody2D rb2d;
+	private Rigidbody rb;
 
 
 	// Use this for initialization
 	void Awake ()
 	{
 		anim = GetComponent<Animator> ();
-		rb2d = GetComponent<Rigidbody2D> ();
+		rb = GetComponent<Rigidbody> ();
 		alive = true;
 	}
 
@@ -34,8 +34,7 @@ public class SimplePlatformController : MonoBehaviour
 	{
 //		if (gameObject.transform.localPosition.y < GameManager.deathHeight && alive == true)
 //			die ();
-//		grounded = Physics2D.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer (currentPage));
-
+		grounded = Physics.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer ("Ground"));
 		if (Input.GetButtonDown ("Jump") && grounded) {
 			jump = true;
 		}
@@ -59,12 +58,24 @@ public class SimplePlatformController : MonoBehaviour
 		}
 
 		if (jump) {
-			anim.SetTrigger ("Jump");
-			rb2d.AddForce (new Vector2 (0f, jumpForce));
+			anim.ResetTrigger ("land");
+			anim.SetTrigger ("jump");
+			rb.AddForce (new Vector2 (0f, jumpForce));
 			jump = false;
+			StartCoroutine (Land ());
 		}
 	}
 
+	public IEnumerator Land(){
+		yield return new WaitForSeconds (.5f);
+		if (grounded) {
+			anim.ResetTrigger ("jump");
+			anim.SetTrigger ("land");
+		}
+		else {
+			StartCoroutine (Land ());
+		}
+	}
 
 	void Flip ()
 	{
@@ -72,22 +83,6 @@ public class SimplePlatformController : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
-	}
-
-	public void changePage(){
-		if (currentPage == "frontPage") {
-			currentPage = "backPage";
-			Physics2D.IgnoreLayerCollision (9, 14, true);
-			Physics2D.IgnoreLayerCollision (9, 15, false);
-		} else {
-			currentPage = "frontPage";
-			Physics2D.IgnoreLayerCollision (9,15,true);
-			Physics2D.IgnoreLayerCollision (9, 14, false);
-		}
-	}
-
-	public string getPage(){
-		return currentPage;
 	}
 
 	void die(){
