@@ -56,7 +56,7 @@ public class SimplePlatformController : MonoBehaviour
 		}
 
 		if (h * rb.velocity.x < maxSpeed) {
-			rb.AddForce (Vector2.right * h * moveForce);
+			rb.AddForce (Vector2.left * h * moveForce);
 		}
 
 		if (Mathf.Abs (rb.velocity.x) > maxSpeed) {
