@@ -7,7 +7,7 @@ public class patrolPath : MonoBehaviour {
 	public LinkedList<Transform> path = new LinkedList<Transform>();
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		foreach (Transform point in gameObject.GetComponentsInChildren<Transform> ()) {
 			if (point != gameObject.transform) {
 				point.position += new Vector3 (0, .25f, 0);

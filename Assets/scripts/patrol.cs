@@ -9,6 +9,7 @@ public class patrol : MonoBehaviour {
 	private Animator anim;
 	private bool facingRight = false;
 	public bool standing = false;
+	public bool stunned = false;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,7 @@ public class patrol : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!standing)
+		if(!standing && !stunned)
 			walkToNextPoint ();
 	}
 
@@ -58,4 +59,19 @@ public class patrol : MonoBehaviour {
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+	public void stun(){
+		StartCoroutine (Stunned());
+	}
+
+	public IEnumerator Stunned(){
+		stunned = true;
+		anim.SetBool ("stunned", true);
+		gameObject.transform.position = gameObject.transform.position - new Vector3(0,.15f,0);
+		yield return new WaitForSeconds (3);
+		gameObject.transform.position = gameObject.transform.position + new Vector3(0,.15f,0);
+		anim.SetBool ("stunned", false);
+		stunned = false;
+	}
+
 }
