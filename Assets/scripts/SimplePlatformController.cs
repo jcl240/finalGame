@@ -45,29 +45,40 @@ public class SimplePlatformController : MonoBehaviour
 	void FixedUpdate ()
 	{
 		float h = Input.GetAxis ("Horizontal");
+		float v = Input.GetAxis ("Vertical");
 
 		if (h == 0 && Input.GetKeyDown (KeyCode.E) && closestQorkle != null)
 			mine ();
 		else
 			miningProgress = 0;
 
-		if (h == -1)
-			anim.SetInteger ("run", 2);
-		else if (h == 0)
+		if (h == 0 && v == 0)
 			anim.SetInteger ("run", 0);
 		else
 			anim.SetInteger ("run", 1);
 
 		if(h < 0.001f && h > -0.001f){
-			rb.velocity = new Vector2(0,rb.velocity.y);
+			rb.velocity = new Vector3 (0,rb.velocity.y, rb.velocity.z);
 		}
 
 		if (h * rb.velocity.x < maxSpeed) {
-			rb.AddForce (Vector2.left * h * moveForce);
+			rb.AddForce (Vector3.left * h * moveForce);
 		}
 
 		if (Mathf.Abs (rb.velocity.x) > maxSpeed) {
-			rb.velocity = new Vector2 (Mathf.Sign (rb.velocity.x) * maxSpeed, rb.velocity.y);
+			rb.velocity = new Vector3 (Mathf.Sign (rb.velocity.x) * maxSpeed, rb.velocity.y, rb.velocity.z);
+		}
+
+		if(v < 0.001f && v > -0.001f){
+			rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+		}
+
+		if (h * rb.velocity.z < maxSpeed) {
+			rb.AddForce (Vector3.back * v * moveForce);
+		}
+
+		if (Mathf.Abs (rb.velocity.z) > maxSpeed) {
+			rb.velocity = new Vector3 (rb.velocity.x, rb.velocity.y, Mathf.Sign (rb.velocity.z) * maxSpeed);
 		}
 
 		if (h > 0 && !facingRight) {
