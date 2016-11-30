@@ -10,6 +10,7 @@ public class patrol : MonoBehaviour {
 	private bool facingRight = false;
 	public bool standing = false;
 	public bool stunned = false;
+	public float stunTime = 3f;
 
 	// Use this for initialization
 	void Start () {
@@ -68,7 +69,7 @@ public class patrol : MonoBehaviour {
 		stunned = true;
 		anim.SetBool ("stunned", true);
 		gameObject.transform.position = gameObject.transform.position - new Vector3(0,.15f,0);
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (stunTime);
 		gameObject.transform.position = gameObject.transform.position + new Vector3(0,.15f,0);
 		anim.SetBool ("stunned", false);
 		stunned = false;

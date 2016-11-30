@@ -11,14 +11,15 @@ public class SimplePlatformController : MonoBehaviour
 	public float maxSpeed = 5f;
 	public float jumpForce = 1000f;
 	public Transform groundCheck;
-	private string currentPage;
 	private bool alive;
-	public LayerMask backMask;
 
 
 	private bool grounded = false;
 	private Animator anim;
 	private Rigidbody rb;
+
+	private minable closestQorkle;
+	private float miningProgress;
 
 
 	// Use this for initialization
@@ -27,6 +28,7 @@ public class SimplePlatformController : MonoBehaviour
 		anim = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody> ();
 		alive = true;
+		miningProgress = 0;
 	}
 
 	// Update is called once per frame
@@ -43,6 +45,11 @@ public class SimplePlatformController : MonoBehaviour
 	void FixedUpdate ()
 	{
 		float h = Input.GetAxis ("Horizontal");
+
+		if (h == 0 && Input.GetKeyDown (KeyCode.E) && closestQorkle != null)
+			mine ();
+		else
+			miningProgress = 0;
 
 		if (h == -1)
 			anim.SetInteger ("run", 2);
@@ -110,6 +117,22 @@ public class SimplePlatformController : MonoBehaviour
 	IEnumerator reload(){
 		yield return new WaitForSeconds (2);
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+	}
+
+	public void SetQorkleInRange(minable qorkle){
+		closestQorkle = qorkle;
+	}
+
+	public void RemoveQorkle(minable qorkle){
+		closestQorkle = null;
+	}
+
+	void mine(){
+		if (miningProgress < 2)
+			miningProgress += .01f;
+		else
+			closestQorkle.FinishMining ();
+		Debug.Log (miningProgress);
 	}
 
 }
