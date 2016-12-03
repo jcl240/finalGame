@@ -48,10 +48,28 @@ public class SimplePlatformController : MonoBehaviour
 		float v = Input.GetAxis ("Vertical");
 
 		if (h == 0 && Input.GetKeyDown (KeyCode.E) && closestQorkle != null)
-			mine ();
-		else
+			StartCoroutine(Mine ());
+		else {
 			miningProgress = 0;
+			Movement (h,v);
+		}
 
+		if (h > 0 && !facingRight) {
+			Flip ();
+		} else if (h < 0 && facingRight) {
+			Flip ();
+		}
+
+		if (jump) {
+			anim.ResetTrigger ("land");
+			anim.SetTrigger ("jump");
+			rb.AddForce (new Vector2 (0f, jumpForce));
+			jump = false;
+			StartCoroutine (Land ());
+		}
+	}
+
+	void Movement(float h, float v){
 		if (h == 0 && v == 0)
 			anim.SetInteger ("run", 0);
 		else
@@ -79,20 +97,6 @@ public class SimplePlatformController : MonoBehaviour
 
 		if (Mathf.Abs (rb.velocity.z) > maxSpeed) {
 			rb.velocity = new Vector3 (rb.velocity.x, rb.velocity.y, Mathf.Sign (rb.velocity.z) * maxSpeed);
-		}
-
-		if (h > 0 && !facingRight) {
-			Flip ();
-		} else if (h < 0 && facingRight) {
-			Flip ();
-		}
-
-		if (jump) {
-			anim.ResetTrigger ("land");
-			anim.SetTrigger ("jump");
-			rb.AddForce (new Vector2 (0f, jumpForce));
-			jump = false;
-			StartCoroutine (Land ());
 		}
 	}
 
@@ -132,18 +136,28 @@ public class SimplePlatformController : MonoBehaviour
 
 	public void SetQorkleInRange(minable qorkle){
 		closestQorkle = qorkle;
+		Debug.Log ("enterRange");
 	}
 
 	public void RemoveQorkle(minable qorkle){
 		closestQorkle = null;
+		Debug.Log ("exitRange");
 	}
 
-	void mine(){
-		if (miningProgress < 2)
-			miningProgress += .01f;
-		else
+	IEnumerator Mine(){
+		float h = Input.GetAxis ("Horizontal");
+		float v = Input.GetAxis ("Vertical");
+
+		if (miningProgress < 2 && h==0 && v==0 && Input.GetKeyDown (KeyCode.E)) {
+			h = Input.GetAxis ("Horizontal");
+			v = Input.GetAxis ("Vertical");
+			miningProgress += .5f;
+			Debug.Log (miningProgress);
+		}
+		if(miningProgress >= 2)
 			closestQorkle.FinishMining ();
-		Debug.Log (miningProgress);
+		yield return new WaitForSeconds (.5f);
+		StartCoroutine (Mine());
 	}
 
 }
