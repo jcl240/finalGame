@@ -1768,6 +1768,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff43c5cc0cd424e9998632967c4773eb, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &815440808 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013157781734, guid: ff43c5cc0cd424e9998632967c4773eb,
+    type: 2}
+  m_PrefabInternal: {fileID: 815440807}
+  m_Script: {fileID: 11500000, guid: ed6446ef09ad745b9aa949f70a52f3b5, type: 3}
 --- !u!114 &822071894 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000013695916852, guid: 56063e255a26f4e65b7c59720ae40fb4,
@@ -2850,6 +2856,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010858428034, guid: f467f1c3f15554042bf068d1c6716890,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 815440808}
+    - target: {fileID: 114000010858428034, guid: f467f1c3f15554042bf068d1c6716890,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f467f1c3f15554042bf068d1c6716890, type: 2}

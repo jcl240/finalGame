@@ -181,7 +181,7 @@ Prefab:
     - target: {fileID: 224000010205532774, guid: f467f1c3f15554042bf068d1c6716890,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224000010205532774, guid: f467f1c3f15554042bf068d1c6716890,
         type: 2}
@@ -233,6 +233,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010858428034, guid: f467f1c3f15554042bf068d1c6716890,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1123625886}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f467f1c3f15554042bf068d1c6716890, type: 2}
   m_IsPrefabParent: 0
@@ -2119,6 +2124,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff43c5cc0cd424e9998632967c4773eb, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1123625886 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013157781734, guid: ff43c5cc0cd424e9998632967c4773eb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1123625885}
+  m_Script: {fileID: 11500000, guid: ed6446ef09ad745b9aa949f70a52f3b5, type: 3}
 --- !u!4 &1129200398
 Transform:
   m_ObjectHideFlags: 0

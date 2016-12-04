@@ -245,7 +245,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "Despite good intentions and a strong work ethic Miney McMineface lives
+    a sad life and disliked by most people he knows. \nHis only positive connection
+    is his ill son, Timmy. He works extra hours in the mine to pay for Little Timmy\u2019s
+    medical expenses. \nMiney has fallen asleep on his lunch break when the Mole People
+    invaded the mine. \nHis fellow miners didn\u2019t bother to wake Miney up due
+    to their antipathetic feelings towards him. \nWhen he awakens he must find his
+    way out.\nThe struggle between Humans and the Mole People over Quorkle is one
+    that has continued for many years.\n Mole People are constantly attacking mines
+    controlled by humans. \nHowever this is the first time a miner with such a funny
+    name and such drive to escape, has been trapped inside. \n"
 --- !u!222 &242945767
 CanvasRenderer:
   m_ObjectHideFlags: 0
