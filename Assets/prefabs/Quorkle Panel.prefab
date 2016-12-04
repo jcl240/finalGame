@@ -23,6 +23,7 @@ GameObject:
   - 64: {fileID: 64000013701087232}
   - 23: {fileID: 23000011568238132}
   - 114: {fileID: 114000010758504472}
+  - 65: {fileID: 65000012485992844}
   m_Layer: 0
   m_Name: Quorkle Panel
   m_TagString: Untagged
@@ -36,9 +37,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011146884076}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7.84, y: 3.05, z: -0.34}
-  m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.93854904, y: 0.8228469, z: -1.8510108}
+  m_LocalScale: {x: 0.1, y: 0.50000024, z: 0.10000006}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -91,6 +92,18 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65000012485992844
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011146884076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010758504472
 MonoBehaviour:
   m_ObjectHideFlags: 1
