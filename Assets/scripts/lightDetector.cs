@@ -5,6 +5,7 @@ using UnityEngine;
 public class lightDetector : MonoBehaviour {
 
 	bool playerInRange = false;
+	public LayerMask ignoreCone;
 
 	// Use this for initialization
 	void Start () {
@@ -22,10 +23,16 @@ public class lightDetector : MonoBehaviour {
 	}
 
 	void findPlayer(){
-		Vector3 player = GameObject.Find ("miney").transform.position;
-		Vector3 direction = player - transform.position;
-		if (Physics.Raycast (transform.position, direction, 2))
-			Debug.Log ("Found him");
+		Vector3 player = GameObject.Find ("miney_17").transform.position;
+		Vector3 direction = player - gameObject.transform.parent.position;
+		RaycastHit hit;
+		Ray ray = new Ray (gameObject.transform.parent.position, direction);
+		Physics.Raycast (ray, out hit, Vector3.Distance (gameObject.transform.parent.position, player), ignoreCone);
+		Debug.Log (hit.collider);
+		if (hit.collider.tag == "Player") {
+			gameObject.transform.parent.GetComponentInParent<Animator> ().SetTrigger ("foundya");
+			Destroy(gameObject.transform.parent.GetComponentInParent<patrol> ());
+		}
 	}
 
 	void OnTriggerEnter(Collider other){
