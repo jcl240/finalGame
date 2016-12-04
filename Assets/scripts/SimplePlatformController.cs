@@ -150,11 +150,14 @@ public class SimplePlatformController : MonoBehaviour
 	}
 
 	void Mine(){
-		if(miningFinish == 0f)
+		if (miningFinish == 0f) {
 			miningFinish = Time.time + 2f;
+			anim.SetBool ("mining", true);
+		}
 		if (Time.time >= miningFinish) {
 			closestQorkle.FinishMining ();
 			miningFinish = 0f;
+			anim.SetBool ("mining", false);
 			GetComponent<progressBar> ().ResetBar();
 		} else {
 			GetComponent<progressBar> ().SetBar(miningFinish, Time.time);
