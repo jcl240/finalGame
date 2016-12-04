@@ -9,8 +9,8 @@ public class progressBar : MonoBehaviour {
 	public Camera camera;
 	Vector2 pos;
 	Vector2 size = new Vector2(100,20);
-	Texture2D progressBarEmpty;
-	Texture2D progressBarFull;
+	public Texture2D progressBarEmpty;
+	public Texture2D progressBarFull;
 
 	void OnGUI()
 	{

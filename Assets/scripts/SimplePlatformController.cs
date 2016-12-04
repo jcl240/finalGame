@@ -33,8 +33,6 @@ public class SimplePlatformController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-//		if (gameObject.transform.localPosition.y < GameManager.deathHeight && alive == true)
-//			die ();
 		grounded = Physics.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer ("Ground"));
 		if (Input.GetButtonDown ("Jump") && grounded) {
 			jump = true;
@@ -119,14 +117,11 @@ public class SimplePlatformController : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
-	void die(){
+	public void die(){
 		Camera cam = gameObject.GetComponentInChildren<Camera> ();
 		cam.transform.SetParent (null);
 		alive = false;
-		if (false) //ADD LOSE GAME HERE
-			GameObject.Find("GameManager").GetComponent<GameManager>().LoseTheGame ();
-		else
-			StartCoroutine(reload ());
+		StartCoroutine(reload ());
 	}
 
 	IEnumerator reload(){
