@@ -64,6 +64,14 @@ public class GameManager : MonoBehaviour {
 		timeStarted = Time.time;
 	}
 		
+
+	public void PauseButton(){
+		if (paused)
+			UnPause ();
+		else
+			Pause ();
+	}
+
 	public static void Pause(){
 		Time.timeScale = 0;
 		paused = true;
