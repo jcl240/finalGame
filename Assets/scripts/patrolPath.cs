@@ -12,7 +12,6 @@ public class patrolPath : MonoBehaviour {
 			if (point != gameObject.transform) {
 				point.position += new Vector3 (0, .25f, 0);
 				path.AddLast (point);
-				Debug.Log (point.position);
 			}
 		}
 	}

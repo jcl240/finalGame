@@ -34,6 +34,8 @@ public class SimplePlatformController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Input.GetKeyDown (KeyCode.F))
+			ToggleLight ();
 		if (Input.GetKeyDown (KeyCode.Q))
 			PlaceStunner ();
 		grounded = Physics.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer ("Ground"));
@@ -102,6 +104,15 @@ public class SimplePlatformController : MonoBehaviour
 		if (Mathf.Abs (rb.velocity.z) > maxSpeed) {
 			rb.velocity = new Vector3 (rb.velocity.x, rb.velocity.y, Mathf.Sign (rb.velocity.z) * maxSpeed);
 		}
+	}
+
+	void ToggleLight(){
+		foreach(Light light in GetComponentsInChildren<Light>(true)){
+			if (light.isActiveAndEnabled)
+				light.gameObject.SetActive (false);
+			else
+				light.gameObject.SetActive (true);
+			}
 	}
 
 	public IEnumerator Land(){
