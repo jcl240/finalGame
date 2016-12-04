@@ -41,29 +41,30 @@ public class SimplePlatformController : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		float h = Input.GetAxis ("Horizontal");
-		float v = Input.GetAxis ("Vertical");
+		if (alive) {
+			float h = Input.GetAxis ("Horizontal");
+			float v = Input.GetAxis ("Vertical");
 
-		if (h == 0 && v == 0 && Input.GetKey (KeyCode.E) && closestQorkle != null) {
-			Mine ();
-		}
-		else  {
-			miningFinish = 0f;
-			Movement (h,v);
-		}
+			if (h == 0 && v == 0 && Input.GetKey (KeyCode.E) && closestQorkle != null) {
+				Mine ();
+			} else {
+				miningFinish = 0f;
+				Movement (h, v);
+			}
 
-		if (h > 0 && !facingRight) {
-			Flip ();
-		} else if (h < 0 && facingRight) {
-			Flip ();
-		}
+			if (h > 0 && !facingRight) {
+				Flip ();
+			} else if (h < 0 && facingRight) {
+				Flip ();
+			}
 
-		if (jump) {
-			anim.ResetTrigger ("land");
-			anim.SetTrigger ("jump");
-			rb.AddForce (new Vector2 (0f, jumpForce));
-			jump = false;
-			StartCoroutine (Land ());
+			if (jump) {
+				anim.ResetTrigger ("land");
+				anim.SetTrigger ("jump");
+				rb.AddForce (new Vector2 (0f, jumpForce));
+				jump = false;
+				StartCoroutine (Land ());
+			}
 		}
 	}
 
@@ -118,8 +119,7 @@ public class SimplePlatformController : MonoBehaviour
 	}
 
 	public void die(){
-		Camera cam = gameObject.GetComponentInChildren<Camera> ();
-		cam.transform.SetParent (null);
+		anim.SetInteger ("run", 0);
 		alive = false;
 		StartCoroutine(reload ());
 	}
