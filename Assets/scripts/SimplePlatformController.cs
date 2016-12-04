@@ -19,7 +19,7 @@ public class SimplePlatformController : MonoBehaviour
 	private Rigidbody rb;
 
 	private minable closestQorkle;
-	private float miningProgress;
+	private float miningFinish = 0f;
 
 
 	// Use this for initialization
@@ -28,7 +28,6 @@ public class SimplePlatformController : MonoBehaviour
 		anim = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody> ();
 		alive = true;
-		miningProgress = 0;
 	}
 
 	// Update is called once per frame
@@ -47,10 +46,11 @@ public class SimplePlatformController : MonoBehaviour
 		float h = Input.GetAxis ("Horizontal");
 		float v = Input.GetAxis ("Vertical");
 
-		if (h == 0 && Input.GetKeyDown (KeyCode.E) && closestQorkle != null)
-			StartCoroutine(Mine ());
-		else {
-			miningProgress = 0;
+		if (h == 0 && v == 0 && Input.GetKey (KeyCode.E) && closestQorkle != null) {
+			Mine ();
+		}
+		else  {
+			miningFinish = 0f;
 			Movement (h,v);
 		}
 
@@ -144,20 +144,16 @@ public class SimplePlatformController : MonoBehaviour
 		Debug.Log ("exitRange");
 	}
 
-	IEnumerator Mine(){
-		float h = Input.GetAxis ("Horizontal");
-		float v = Input.GetAxis ("Vertical");
-
-		if (miningProgress < 2 && h==0 && v==0 && Input.GetKeyDown (KeyCode.E)) {
-			h = Input.GetAxis ("Horizontal");
-			v = Input.GetAxis ("Vertical");
-			miningProgress += .5f;
-			Debug.Log (miningProgress);
-		}
-		if(miningProgress >= 2)
+	void Mine(){
+		if(miningFinish == 0f)
+			miningFinish = Time.time + 2f;
+		if (Time.time >= miningFinish) {
 			closestQorkle.FinishMining ();
-		yield return new WaitForSeconds (.5f);
-		StartCoroutine (Mine());
+			miningFinish = 0f;
+			GetComponent<progressBar> ().ResetBar();
+		} else {
+			GetComponent<progressBar> ().SetBar(miningFinish, Time.time);
+		}
 	}
 
 }
