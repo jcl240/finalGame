@@ -52,6 +52,8 @@ public class SimplePlatformController : MonoBehaviour
 				Mine ();
 			} else {
 				miningFinish = 0f;
+				GetComponent<progressBar> ().ResetBar();
+				anim.SetBool ("mining", false);
 				Movement (h, v);
 			}
 
