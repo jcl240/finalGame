@@ -28,7 +28,6 @@ public class lightDetector : MonoBehaviour {
 		RaycastHit hit;
 		Ray ray = new Ray (gameObject.transform.parent.position, direction);
 		Physics.Raycast (ray, out hit, Vector3.Distance (gameObject.transform.parent.position, player), ignoreCone);
-		Debug.Log (hit.collider.tag);
 		if (hit.collider.tag == "Player") {
 			gameObject.transform.parent.GetComponentInParent<Animator> ().SetTrigger ("foundya");
 			Destroy(gameObject.transform.parent.GetComponentInParent<patrol> ());
