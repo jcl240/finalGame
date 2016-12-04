@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour {
 		
 
 	public void PauseButton(){
+		Debug.Log ("Pressed");
 		if (paused)
 			UnPause ();
 		else
