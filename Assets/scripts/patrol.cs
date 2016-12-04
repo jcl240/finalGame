@@ -22,10 +22,10 @@ public class patrol : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(!standing && !stunned)
-			walkToNextPoint ();
+			WalkToNextPoint ();
 	}
 
-	void walkToNextPoint(){
+	void WalkToNextPoint(){
 		if (gameObject.transform.position == currentPoint.Value.position) {
 			StartCoroutine(Stand ());
 			if (currentPoint == enemyPath.path.Last)
@@ -61,7 +61,7 @@ public class patrol : MonoBehaviour {
 		transform.localScale = theScale;
 	}
 
-	public void stun(){
+	public void Stun(){
 		StartCoroutine (Stunned());
 	}
 

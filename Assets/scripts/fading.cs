@@ -43,7 +43,7 @@ public class fading : MonoBehaviour {
 		StartCoroutine (LoadScene(stage));
 	}
 
-	public void goToPoints(){
+	public void GoToPoints(){
 		BeginFade (1);
 		StartCoroutine (LoadScene(2));
 	}

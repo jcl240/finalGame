@@ -17,7 +17,7 @@ public class stun : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Enemy") {
-			other.GetComponent<patrol> ().stun ();
+			other.GetComponent<patrol> ().Stun ();
 			Destroy (gameObject);
 		}
 	}

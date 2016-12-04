@@ -19,10 +19,10 @@ public class lightDetector : MonoBehaviour {
 
 	void FixedUpdate(){
 		if (playerInRange)
-			findPlayer ();
+			FindPlayer ();
 	}
 
-	void findPlayer(){
+	void FindPlayer(){
 		Vector3 player = GameObject.Find ("miney_17").transform.position;
 		Vector3 direction = player - gameObject.transform.parent.position;
 		RaycastHit hit;
@@ -32,7 +32,7 @@ public class lightDetector : MonoBehaviour {
 		if (hit.collider.tag == "Player") {
 			gameObject.transform.parent.GetComponentInParent<Animator> ().SetTrigger ("foundya");
 			Destroy(gameObject.transform.parent.GetComponentInParent<patrol> ());
-			hit.collider.gameObject.GetComponent<SimplePlatformController> ().die ();
+			hit.collider.gameObject.GetComponent<SimplePlatformController> ().Die ();
 		}
 	}
 

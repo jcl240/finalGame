@@ -35,32 +35,32 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Start(){
-		_instance.setPoints ();
+		_instance.SetPoints ();
 	}
 
-	public void setPoints(){
+	public void SetPoints(){
 		GameObject.Find ("/Canvas/quorkleText").GetComponent<Text>().text = points.ToString();
 	}
 
 	public static void AddPoints(){
 		points += 1;
-		_instance.setPoints ();
+		_instance.SetPoints ();
 	}
 
-	public static void removeStun(){
+	public static void RemoveStun(){
 		_instance.stunners-= 1;
 		_instance.stunnersText.text = _instance.stunners.ToString();
 	}
 
-	public static bool hasStunners(){
+	public static bool HasStunners(){
 		return _instance.stunners!= 0;
 	}
 
-	public static int getPoints(){
+	public static int GetPoints(){
 		return points;
 	}
 
-	public void startTimer(){
+	public void StartTimer(){
 		timeStarted = Time.time;
 	}
 		

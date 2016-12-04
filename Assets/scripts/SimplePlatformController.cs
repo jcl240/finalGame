@@ -114,8 +114,8 @@ public class SimplePlatformController : MonoBehaviour
 	}
 
 	void PlaceStunner(){
-		if (GameManager.hasStunners ()) {
-			GameManager.removeStun ();
+		if (GameManager.HasStunners ()) {
+			GameManager.RemoveStun ();
 			Instantiate (stunner, transform.position + new Vector3(0,-.1f,0), Quaternion.identity);
 		}
 	}
@@ -128,13 +128,13 @@ public class SimplePlatformController : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
-	public void die(){
+	public void Die(){
 		anim.SetInteger ("run", 0);
 		alive = false;
-		StartCoroutine(reload ());
+		StartCoroutine(Reload ());
 	}
 
-	IEnumerator reload(){
+	IEnumerator Reload(){
 		yield return new WaitForSeconds (2);
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 	}
