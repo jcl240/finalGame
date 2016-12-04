@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
 	void Awake(){
 		State = GameState.Playing;
 		_instance = this;
-		//_instance.stunObject = GameObject.Find ("/Canvas/number");
+		_instance.stunObject = GameObject.Find ("/Canvas/stunnersText");
 		if (_instance.stunObject != null) {
 			_instance.stunnersText = _instance.stunObject.GetComponent<Text> ();
 			_instance.stunnersText.text = stunners.ToString ();
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void setPoints(){
-		//GameObject.Find ("/Canvas/coinsText").GetComponent<Text>().text = points.ToString();
+		GameObject.Find ("/Canvas/quorkleText").GetComponent<Text>().text = points.ToString();
 	}
 
 	public static void AddPoints(){

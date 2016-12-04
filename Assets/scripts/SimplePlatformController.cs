@@ -116,7 +116,7 @@ public class SimplePlatformController : MonoBehaviour
 	void PlaceStunner(){
 		if (GameManager.hasStunners ()) {
 			GameManager.removeStun ();
-			Instantiate (stunner, transform.position, Quaternion.identity);
+			Instantiate (stunner, transform.position + new Vector3(0,-.1f,0), Quaternion.identity);
 		}
 	}
 
