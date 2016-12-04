@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 	public static GameState State = GameState.Playing;
 
 	public static float timeStarted;
-	public int stunners;
+	public static int stunners;
 	private static int points;
 
 	void Awake(){
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
 		_instance.setPoints ();
 	}
 
-	public void removeStun(){
+	public static void removeStun(){
 		_instance.stunners-= 1;
 		_instance.stunnersText.text = _instance.stunners.ToString();
 	}

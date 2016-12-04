@@ -12,6 +12,7 @@ public class SimplePlatformController : MonoBehaviour
 	public float jumpForce = 1000f;
 	public Transform groundCheck;
 	private bool alive;
+	public GameObject stunner;
 
 
 	private bool grounded = false;
@@ -33,6 +34,8 @@ public class SimplePlatformController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Input.GetKeyDown (KeyCode.Q))
+			PlaceStunner ();
 		grounded = Physics.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer ("Ground"));
 		if (Input.GetButtonDown ("Jump") && grounded) {
 			jump = true;
@@ -107,6 +110,13 @@ public class SimplePlatformController : MonoBehaviour
 		}
 		else {
 			StartCoroutine (Land ());
+		}
+	}
+
+	void PlaceStunner(){
+		if (GameManager.hasStunners ()) {
+			GameManager.removeStun ();
+			Instantiate (stunner, transform.position, Quaternion.identity);
 		}
 	}
 
