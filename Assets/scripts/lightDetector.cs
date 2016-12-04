@@ -31,7 +31,7 @@ public class lightDetector : MonoBehaviour {
 		if (hit.collider.tag == "Player") {
 			gameObject.transform.parent.GetComponentInParent<Animator> ().SetTrigger ("foundya");
 			Destroy(gameObject.transform.parent.GetComponentInParent<patrol> ());
-			GameObject.Find ("miney_17")..GetComponent<SimplePlatformController> ().Die ();
+			GameObject.Find ("miney_17").GetComponent<SimplePlatformController> ().Die ();
 		}
 	}
 
