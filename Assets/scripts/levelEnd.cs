@@ -22,7 +22,7 @@ public class levelEnd : MonoBehaviour {
 	}
 
 	void UseDoor(){
-		if(SceneManager.GetSceneByBuildIndex()+1 < SceneManager.sceneCount)
+		if(SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCount)
 			GameObject.Find ("/GameManager").GetComponent<fading> ().LoadStage (SceneManager.GetActiveScene().buildIndex+1);
 		else
 			GameObject.Find ("/GameManager").GetComponent<fading> ().returnToMain();
