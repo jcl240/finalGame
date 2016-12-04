@@ -19,8 +19,12 @@ public class GameManager : MonoBehaviour {
 	public static float timeStarted;
 	public int stunners;
 	private static int points;
+	static float timeScale;
+	public static bool paused = false;
+
 
 	void Awake(){
+		timeScale = Time.timeScale;
 		State = GameState.Playing;
 		_instance = this;
 		_instance.stunObject = GameObject.Find ("/Canvas/stunnersText");
@@ -60,4 +64,13 @@ public class GameManager : MonoBehaviour {
 		timeStarted = Time.time;
 	}
 		
+	public static void Pause(){
+		Time.timeScale = 0;
+		paused = true;
+	}
+
+	public static void UnPause(){
+		Time.timeScale = timeScale;
+		paused = false;
+	}
 }
