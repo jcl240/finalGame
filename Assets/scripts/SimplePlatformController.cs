@@ -154,12 +154,10 @@ public class SimplePlatformController : MonoBehaviour
 
 	public void SetQorkleInRange(minable qorkle){
 		closestQorkle = qorkle;
-		Debug.Log ("enterRange");
 	}
 
 	public void RemoveQorkle(minable qorkle){
 		closestQorkle = null;
-		Debug.Log ("exitRange");
 	}
 
 	void Mine(){

@@ -31,7 +31,6 @@ public class minable : MonoBehaviour {
 
 	public void FinishMining(){
 		GameManager.AddPoints ();
-		Debug.Log (GameManager.GetPoints());
 		Destroy (gameObject);
 	}
 }
